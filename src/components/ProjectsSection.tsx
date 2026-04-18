@@ -170,7 +170,7 @@ export default function ProjectsSection() {
                 {p.title}
               </h3>
 
-              <p className="text-[13px] leading-[1.65] text-[#c59f77] font-sans mb-6 flex-1">
+              <p className="text-[13px] leading-[1.65] text-[#999] font-sans mb-6 flex-1">
                 {p.description}
               </p>
 
