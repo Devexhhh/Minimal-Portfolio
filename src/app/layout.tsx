@@ -4,7 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Sujal Kumar — Portfolio",
+  title: "Kumar Sujal — Portfolio",
   description: "Student developer working on web, blockchain & data projects",
 };
 
