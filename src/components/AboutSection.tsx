@@ -39,12 +39,35 @@ const achievements = [
   },
 ];
 
-function highlight(text, bolds) {
-  const regex = new RegExp(`(${bolds.map(b => b.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`, "g");
+function highlight(text: string, bolds: string[]) {
+  const regex = new RegExp(
+    `(${bolds.map(b => b.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`,
+    "g"
+  );
   return text.split(regex).map((part, i) =>
     bolds.includes(part)
       ? <strong key={i} className="text-[#e2e2e2] font-bold">{part}</strong>
       : part
+  );
+}
+
+function SocialButton({ label, icon, href }: { label: string; icon: string; href: string }) {
+  return (
+    <a
+      href={href}
+      className="group relative inline-flex items-center gap-2 bg-[#111] border border-[#242424] hover:border-transparent hover:bg-[#161616] hover:text-white px-4 py-2 text-[13px] text-[#aaa] no-underline transition-all duration-200 font-[inherit]"
+    >
+      {/* Dashed border on hover */}
+      <div className="absolute inset-[-1px] border border-dashed border-[#666] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
+      {/* Corner L-brackets */}
+      <div className="absolute top-[-2px] left-[-2px] w-[7px] h-[7px] border-t border-l border-[#aaa] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
+      <div className="absolute top-[-2px] right-[-2px] w-[7px] h-[7px] border-t border-r border-[#aaa] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
+      <div className="absolute bottom-[-2px] left-[-2px] w-[7px] h-[7px] border-b border-l border-[#aaa] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
+      <div className="absolute bottom-[-2px] right-[-2px] w-[7px] h-[7px] border-b border-r border-[#aaa] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
+      {/* Content */}
+      <span className="relative z-10 text-[12px]">{icon}</span>
+      <span className="relative z-10">{label}</span>
+    </a>
   );
 }
 
@@ -53,36 +76,34 @@ export default function AboutSection() {
     <div className="page-enter max-w-[860px] mx-auto pt-[100px] px-6 pb-10">
 
       {/* Hero */}
-      <p className="text-[15px] text-[#666] mb-3 tracking-[0.03em]">
+      <p className="text-[13px] text-[#666] mb-3 tracking-[0.03em]">
         Hola I&apos;m 👋
       </p>
 
-      {/* Added pixel-head here */}
-      <h1 className="pixel-head text-[clamp(34px,6vw,58px)] font-bold tracking-[0.045em] uppercase leading-[1.05] text-[#efefef] mb-[18px]">
+      <h1 className="font-[family-name:var(--font-pixel)] text-[clamp(34px,6vw,58px)] font-medium tracking-[0.045em] uppercase leading-[1.05] text-[#efefef] mb-5">
         Kumar Sujal
       </h1>
 
-      <p className="text-[13px] text-[#555] tracking-[0.14em] uppercase mb-10">
+      <p className="text-[11px] text-[#555] tracking-[0.14em] uppercase mb-9">
         I build web apps, explore blockchain, and crunch data for research
       </p>
 
       {/* Terminal pill */}
       <div className="flex items-center gap-4 mb-[72px]">
-        <div className="bg-[#111] border border-[#252525] py-2.5 px-5 text-[14px] text-[#d4d4d4] flex items-center gap-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
-          <span className="text-[#57c457] text-[10px]">●</span>
-          <span className="font-pixel">npx kumarsujal</span>
+        <div className="bg-[#111] border border-[#252525] py-2 px-[18px] text-[13px] text-[#d4d4d4] flex items-center gap-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+          <span className="text-[#57c457] text-[9px]">●</span>
+          <span>npx kumarsujal</span>
           <span className="blink text-[#555] font-light">_</span>
         </div>
-        <span className="text-[13px] text-[#444]">← try this in your terminal</span>
+        <span className="text-[11px] text-[#444]">← try this in your terminal</span>
       </div>
 
-      {/* About Me */}
-      {/* Added pixel-head here */}
-      <h2 className="font-pixel text-xl font-bold tracking-[0.07em] text-[#aaa] mb-[20px]">
-        ABOUT_ME
+      {/* About Me heading */}
+      <h2 className="font-[family-name:var(--font-pixel)] text-xl font-medium tracking-[0.07em] uppercase text-[#aaa] mb-5">
+        About_Me
       </h2>
 
-      <p className="text-[15px] leading-[1.95] text-[#a0a0a0] mb-4">
+      <p className="text-[15px] leading-[1.95] text-[#a0a0a0] mb-3.5">
         Hi! I&apos;m Kumar Sujal — a student developer with interests spanning competitive programming,
         Web3/blockchain, and environmental data analysis. I love building things that look great and
         work even better, from dark luxury wallet UIs to scientific research platforms.
@@ -95,55 +116,28 @@ export default function AboutSection() {
       </p>
 
       {/* Social links */}
-      <p className="text-[14px] text-[#444] mb-4">
+      <p className="text-[14px] text-[#444] mb-3">
         My <strong className="text-[#666]">social links</strong> if you wish to connect with me
       </p>
-
-      <div className="flex flex-wrap gap-3 mb-[60px]">
-        {socials.map(s => (
-          <a
-            key={s.label}
-            href={s.href}
-            className="group relative inline-flex items-center justify-center bg-[#111] border border-[#242424] hover:border-transparent px-4 py-2 text-[14px] text-[#aaa] no-underline transition-colors duration-200 hover:bg-[#161616] hover:text-white font-[inherit]"
-          >
-            {/* Hover Dashed Bounding Box */}
-            <div className="absolute inset-[-1px] border border-dashed border-[#666] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10" />
-
-            {/* Hover Solid L-brackets (Corners) */}
-            {[
-              "top-[-2px] left-[-2px] border-t border-l", // Top Left
-              "top-[-2px] right-[-2px] border-t border-r", // Top Right
-              "bottom-[-2px] left-[-2px] border-b border-l", // Bottom Left
-              "bottom-[-2px] right-[-2px] border-b border-r" // Bottom Right
-            ].map((classes, ci) => (
-              <div
-                key={ci}
-                className={`absolute w-[6px] h-[6px] border-[#aaa] opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20 pointer-events-none ${classes}`}
-              />
-            ))}
-
-            {/* Content (Z-indexed above effects) */}
-            <span className="relative z-30 flex items-center gap-2">
-              <span className="text-[13px]">{s.icon}</span>
-              {s.label}
-            </span>
-          </a>
-        ))}
+      <div className="flex flex-wrap gap-2 mb-[60px]">
+        {socials.map(s => <SocialButton key={s.label} {...s} />)}
       </div>
 
       {/* Contribution grid */}
       <ContributionGrid total={3847} />
 
-      {/* Notable achievements */}
-      {/* Added pixel-head here */}
-      <h2 className="pixel-head text-xl font-bold tracking-[0.07em] text-[#aaa] mt-[60px] mb-6 [font-variant-caps:small-caps]">
+      {/* Notable achievements heading */}
+      <h2 className="font-[family-name:var(--font-pixel)] text-xl font-medium tracking-[0.07em] uppercase text-[#aaa] mt-[60px] mb-6">
         Notable_achievements
       </h2>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col">
         {achievements.map((a, i) => (
-          <div key={i} className="achievement-block">
-            <p className="text-[15px] leading-[1.9] text-[#909090]">
+          <div
+            key={i}
+            className="border-l-2 border-[#1e1e1e] hover:border-[#3a3a3a] pl-5 py-3.5 transition-colors duration-200"
+          >
+            <p className="text-[13px] leading-[1.9] text-[#909090]">
               <strong className="text-[#d0d0d0]">{a.title}</strong>{" "}
               {highlight(a.body, a.bold)}
               {a.link && (
