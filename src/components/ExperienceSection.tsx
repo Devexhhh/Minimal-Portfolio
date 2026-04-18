@@ -138,7 +138,7 @@ export default function ExperienceSection() {
               </p>
               <ul className="list-none p-0 m-0">
                 {exp.responsibilities.map((r, ri) => (
-                  <li key={ri} className="text-[15px] leading-[1.85] text-[#a0a0a0] pl-5 relative mb-2">
+                  <li key={ri} className="text-[14px] leading-[1.85] text-[#a0a0a0] pl-5 relative mb-2">
                     <span className="absolute left-0 text-[#555] top-[2px]">•</span>
                     {r}
                   </li>
