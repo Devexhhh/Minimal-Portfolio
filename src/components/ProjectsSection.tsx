@@ -2,6 +2,30 @@
 import Tag from "./Tag";
 import StatusBar from "./StatusBar";
 
+// Helper function to match tech tags with specific colors
+const getTechStyle = (tech) => {
+  const t = tech.toLowerCase();
+  if (t.includes("react") || t.includes("next"))
+    return "text-[#61dafb] border-[#61dafb]/30 bg-[#61dafb]/10";
+  if (t.includes("node") || t.includes("mongo") || t.includes("excel"))
+    return "text-[#4db33d] border-[#4db33d]/30 bg-[#4db33d]/10";
+  if (t.includes("python") || t.includes("api") || t.includes("c++"))
+    return "text-[#4285F4] border-[#4285F4]/30 bg-[#4285F4]/10";
+  if (t.includes("solana"))
+    return "text-[#14F195] border-[#14F195]/30 bg-[#14F195]/10";
+  if (t.includes("ethereum") || t.includes("ethers") || t.includes("blockchain"))
+    return "text-[#627EEA] border-[#627EEA]/30 bg-[#627EEA]/10";
+  if (t.includes("rust") || t.includes("html") || t.includes("phaser"))
+    return "text-[#e34f26] border-[#e34f26]/30 bg-[#e34f26]/10";
+  if (t.includes("javascript") || t.includes("typescript"))
+    return "text-[#f7df1e] border-[#f7df1e]/30 bg-[#f7df1e]/10";
+  if (t.includes("tailwind") || t.includes("css") || t.includes("websocket"))
+    return "text-[#38bdf8] border-[#38bdf8]/30 bg-[#38bdf8]/10";
+  if (t.includes("motion") || t.includes("framer"))
+    return "text-[#f43f5e] border-[#f43f5e]/30 bg-[#f43f5e]/10"; // Rose/Pink for Motion
+  return "text-[#888] border-[#333] bg-[#111]";
+};
+
 const projects = [
   {
     title: "KeyZen",
@@ -71,16 +95,17 @@ const projects = [
 
 export default function ProjectsSection() {
   return (
-    <div className="page-enter max-w-[1120px] mx-auto pt-[100px] px-6 pb-10">
+    <div className="page-enter max-w-4xl mx-auto pt-[100px] px-6 pb-10">
       <p className="section-kicker">Portfolio</p>
       <h1 className="section-title pixel-head">PROJECTS</h1>
       <p className="section-sub">A collection of things I&apos;ve built.</p>
 
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(340px,1fr))] gap-5">
+      {/* CHANGED: Replaced auto-fill with standard responsive columns */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {projects.map((p, i) => (
           <div
             key={i}
-            className="group relative cursor-default bg-[#151515] border border-[#242424] hover:border-transparent rounded-none flex flex-col transition-colors duration-200"
+            className="group relative cursor-default bg-[#151515] border border-[#242424] hover:border-transparent flex flex-col transition-colors duration-200 cursor-pointer"
           >
             {/* Hover Dashed Bounding Box */}
             <div className="absolute inset-[-1px] border border-dashed border-[#666] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20" />
@@ -100,7 +125,7 @@ export default function ProjectsSection() {
 
             {/* Preview Section */}
             <div
-              className="h-[220px] flex items-center justify-center relative overflow-hidden border-b border-[#242424] bg-[#0c0c0c]"
+              className="h-45 flex items-center justify-center relative overflow-hidden border-b border-[#242424] bg-[#0c0c0c]"
               style={!p.image ? { background: `radial-gradient(ellipse at 60% 40%, ${p.gradientA} 0%, ${p.gradientB} 70%)` } : {}}
             >
               {p.image ? (
@@ -131,30 +156,32 @@ export default function ProjectsSection() {
               )}
             </div>
 
+
             {/* Content Section */}
             <div className="p-6 flex flex-col flex-1 relative z-10">
               <div className="flex justify-between items-center mb-4">
-                <span className="text-[14px] text-[#999] tracking-wide">{p.type}</span>
-                <span className="bg-[#2c2c2c] border border-[#3a3a3a] rounded-md py-1 px-3 text-[13px] font-medium text-[#f0f0f0]">
+                <span className="text-[12px] text-[#999] tracking-tighter font-sans">{p.type}</span>
+                <span className="bg-[#2c2c2c] border border-[#3a3a3a] py-1 px-3 text-[13px] font-medium text-[#f0f0f0]">
                   {p.status}
                 </span>
               </div>
 
-              <h3 className="text-[24px] font-bold text-white mb-3 tracking-tight">
+              <h3 className="text-[24px] font-bold text-white mb-3 tracking-tight font-pixel">
                 {p.title}
               </h3>
 
-              <p className="text-[14px] leading-[1.65] text-[#c59f77] font-mono mb-6 flex-1">
+              <p className="text-[13px] leading-[1.65] text-[#c59f77] font-sans mb-6 flex-1">
                 {p.description}
               </p>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2.5">
-                {p.tags.map(t => (
+              {/* Tech Tags Layout (CHANGED TO USE getTechStyle) */}
+              <div className="flex flex-wrap gap-1.5">
+                {p.tags.map((t, idx) => (
                   <span
-                    key={t}
-                    className="bg-[#222] text-[#aaa] rounded-none px-3.5 py-1.5 text-[13px] transition-colors duration-200 hover:bg-[#2a2a2a]"
+                    key={idx}
+                    className={`flex items-center gap-1.5 px-2 py-1 border text-[11px] tracking-wide transition-colors duration-200 ${getTechStyle(t)}`}
                   >
+                    <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />
                     {t}
                   </span>
                 ))}
