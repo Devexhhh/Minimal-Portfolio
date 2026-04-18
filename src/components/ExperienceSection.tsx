@@ -1,6 +1,27 @@
 "use client";
-import Tag from "./Tag";
 import StatusBar from "./StatusBar";
+
+// Helper function to match tech tags with specific colors
+const getTechStyle = (tech) => {
+  const t = tech.toLowerCase();
+  if (t.includes("react") || t.includes("next"))
+    return "text-[#61dafb] border-[#61dafb]/30 bg-[#61dafb]/10";
+  if (t.includes("node") || t.includes("mongo") || t.includes("excel"))
+    return "text-[#4db33d] border-[#4db33d]/30 bg-[#4db33d]/10";
+  if (t.includes("python") || t.includes("api") || t.includes("c++"))
+    return "text-[#4285F4] border-[#4285F4]/30 bg-[#4285F4]/10";
+  if (t.includes("solana"))
+    return "text-[#14F195] border-[#14F195]/30 bg-[#14F195]/10";
+  if (t.includes("ethereum") || t.includes("ethers") || t.includes("blockchain"))
+    return "text-[#627EEA] border-[#627EEA]/30 bg-[#627EEA]/10";
+  if (t.includes("rust") || t.includes("html") || t.includes("phaser"))
+    return "text-[#e34f26] border-[#e34f26]/30 bg-[#e34f26]/10";
+  if (t.includes("javascript") || t.includes("typescript"))
+    return "text-[#f7df1e] border-[#f7df1e]/30 bg-[#f7df1e]/10";
+  if (t.includes("tailwind") || t.includes("css") || t.includes("websocket"))
+    return "text-[#38bdf8] border-[#38bdf8]/30 bg-[#38bdf8]/10";
+  return "text-[#888] border-[#333] bg-[#111]";
+};
 
 const experiences = [
   {
@@ -64,7 +85,7 @@ const experiences = [
 
 export default function ExperienceSection() {
   return (
-    <div className="page-enter max-w-[860px] mx-auto pt-[100px] px-6 pb-10">
+    <div className="page-enter max-w-4xl mx-auto pt-[100px] px-6 pb-10">
 
       <p className="section-kicker">Career</p>
       <h1 className="section-title pixel-head">EXPERIENCES</h1>
@@ -81,44 +102,44 @@ export default function ExperienceSection() {
             <div className="exp-dot" />
 
             {/* Header */}
-            <div className="flex justify-between items-start flex-wrap gap-2.5 mb-[18px]">
-              <div className="flex items-center gap-3">
+            <div className="flex justify-between items-start flex-wrap gap-3 mb-[20px]">
+              <div className="flex items-center gap-4">
                 {/* Logo */}
-                <div className="w-10 h-10 bg-[#111] border border-[#222] rounded-[10px] flex items-center justify-center text-[18px] shrink-0">
+                <div className="w-12 h-12 bg-[#111] border border-[#222] flex items-center justify-center text-[20px] shrink-0">
                   {exp.logo}
                 </div>
                 {/* Company & Role */}
                 <div>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-[15px] font-bold text-[#d4d4d4] tracking-[0.02em]">
+                  <div className="flex items-center gap-2.5 flex-wrap mb-1">
+                    <span className="text-[18px] font-bold text-[#e2e2e2] tracking-[0.02em] font-pixel">
                       {exp.company}
                     </span>
-                    <span className="bg-[#141414] border border-[#222] rounded px-2 py-[1px] text-[11px] text-[#555]">
+                    <span className="bg-[#141414] border border-[#222] px-2.5 py-[2px] text-[12px] text-[#666]">
                       {exp.type}
                     </span>
                   </div>
-                  <div className="text-xs text-[#686868] mt-[2px]">
+                  <div className="text-[15px] text-[#888] font-pixel">
                     {exp.role}
                   </div>
                 </div>
               </div>
 
               {/* Location & Period */}
-              <div className="text-right">
-                <div className="text-xs text-[#5a5a5a]">{exp.period}</div>
-                <div className="text-[11px] text-[#3a3a3a]">{exp.location}</div>
+              <div className="text-right mt-1 sm:mt-0">
+                <div className="text-[13px] text-[#666] mb-0.5">{exp.period}</div>
+                <div className="text-[12px] text-[#555]">{exp.location}</div>
               </div>
             </div>
 
             {/* Responsibilities */}
-            <div className="mb-4">
-              <p className="text-[10px] tracking-[0.12em] text-[#444] mb-2.5 uppercase">
+            <div className="mb-5">
+              <p className="text-[11px] tracking-[0.12em] text-[#555] mb-3 uppercase">
                 Key Responsibilities
               </p>
               <ul className="list-none p-0 m-0">
                 {exp.responsibilities.map((r, ri) => (
-                  <li key={ri} className="text-xs leading-[1.85] text-[#888] pl-4 relative mb-[2px]">
-                    <span className="absolute left-0 text-[#333] top-[1px]">•</span>
+                  <li key={ri} className="text-[15px] leading-[1.85] text-[#a0a0a0] pl-5 relative mb-2">
+                    <span className="absolute left-0 text-[#555] top-[2px]">•</span>
                     {r}
                   </li>
                 ))}
@@ -127,12 +148,18 @@ export default function ExperienceSection() {
 
             {/* Tech */}
             <div>
-              <p className="text-[10px] tracking-[0.12em] text-[#444] mb-2 uppercase">
+              <p className="text-[11px] tracking-[0.12em] text-[#555] mb-3 uppercase">
                 Technology Used
               </p>
-              <div className="flex flex-wrap gap-[6px]">
-                {exp.tech.map((t) => (
-                  <Tag key={t} label={t} />
+              <div className="flex flex-wrap gap-1.5">
+                {exp.tech.map((t, idx) => (
+                  <span
+                    key={idx}
+                    className={`flex items-center gap-1.5 px-2 py-1 border text-[11px] tracking-wide transition-colors duration-200 ${getTechStyle(t)}`}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />
+                    {t}
+                  </span>
                 ))}
               </div>
             </div>
