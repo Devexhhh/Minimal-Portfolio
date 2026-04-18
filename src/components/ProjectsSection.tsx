@@ -161,16 +161,16 @@ export default function ProjectsSection() {
             <div className="p-6 flex flex-col flex-1 relative z-10">
               <div className="flex justify-between items-center mb-4">
                 <span className="text-[12px] text-[#999] tracking-tighter font-sans">{p.type}</span>
-                <span className="bg-[#2c2c2c] border border-[#3a3a3a] py-1 px-3 text-[13px] font-medium text-[#f0f0f0]">
+                <span className="bg-[#2c2c2c] border border-[#3a3a3a] py-1 px-2 text-[11px] font-medium text-[#f0f0f0]">
                   {p.status}
                 </span>
               </div>
 
-              <h3 className="text-[24px] font-bold text-white mb-3 tracking-tight font-pixel">
+              <h3 className="text-[20px] font-bold text-white mb-3 tracking-tight font-pixel">
                 {p.title}
               </h3>
 
-              <p className="text-[13px] leading-[1.65] text-[#999] font-sans mb-6 flex-1">
+              <p className="text-[11.5px] leading-[1.65] text-[#999] mb-6 flex-1">
                 {p.description}
               </p>
 
