@@ -59,7 +59,7 @@ export default function AboutSection() {
 
       {/* Added pixel-head here */}
       <h1 className="pixel-head text-[clamp(34px,6vw,58px)] font-bold tracking-[0.045em] uppercase leading-[1.05] text-[#efefef] mb-[18px]">
-        Sujal Kumar
+        Kumar Sujal
       </h1>
 
       <p className="text-[13px] text-[#555] tracking-[0.14em] uppercase mb-10">
@@ -68,9 +68,9 @@ export default function AboutSection() {
 
       {/* Terminal pill */}
       <div className="flex items-center gap-4 mb-[72px]">
-        <div className="bg-[#111] border border-[#252525] rounded-lg py-2.5 px-5 text-[14px] text-[#d4d4d4] flex items-center gap-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+        <div className="bg-[#111] border border-[#252525] py-2.5 px-5 text-[14px] text-[#d4d4d4] flex items-center gap-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
           <span className="text-[#57c457] text-[10px]">●</span>
-          <span className="font-mono">npx sujalkumar</span>
+          <span className="font-pixel">npx kumarsujal</span>
           <span className="blink text-[#555] font-light">_</span>
         </div>
         <span className="text-[13px] text-[#444]">← try this in your terminal</span>
@@ -78,12 +78,12 @@ export default function AboutSection() {
 
       {/* About Me */}
       {/* Added pixel-head here */}
-      <h2 className="pixel-head text-xl font-bold tracking-[0.07em] text-[#aaa] mb-[20px] [font-variant-caps:small-caps]">
-        About_Me
+      <h2 className="font-pixel text-xl font-bold tracking-[0.07em] text-[#aaa] mb-[20px]">
+        ABOUT_ME
       </h2>
 
       <p className="text-[15px] leading-[1.95] text-[#a0a0a0] mb-4">
-        Hi! I&apos;m Sujal Kumar — a student developer with interests spanning competitive programming,
+        Hi! I&apos;m Kumar Sujal — a student developer with interests spanning competitive programming,
         Web3/blockchain, and environmental data analysis. I love building things that look great and
         work even better, from dark luxury wallet UIs to scientific research platforms.
       </p>
@@ -104,7 +104,7 @@ export default function AboutSection() {
           <a
             key={s.label}
             href={s.href}
-            className="group relative inline-flex items-center justify-center bg-[#111] border border-[#242424] hover:border-transparent rounded-none px-4 py-2 text-[14px] text-[#aaa] no-underline transition-colors duration-200 hover:bg-[#161616] hover:text-white font-[inherit]"
+            className="group relative inline-flex items-center justify-center bg-[#111] border border-[#242424] hover:border-transparent px-4 py-2 text-[14px] text-[#aaa] no-underline transition-colors duration-200 hover:bg-[#161616] hover:text-white font-[inherit]"
           >
             {/* Hover Dashed Bounding Box */}
             <div className="absolute inset-[-1px] border border-dashed border-[#666] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10" />
