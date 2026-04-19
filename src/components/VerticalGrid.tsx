@@ -13,7 +13,7 @@ export default function VerticalGrid() {
                 {verticals.map((pos, i) => (
                     <div
                         key={`v-${i}`}
-                        className={`absolute top-0 bottom-0 ${pos} w-px bg-[#ffffff06]`}
+                        className={`absolute top-0 bottom-0 ${pos} w-px bg-zinc-800`}
                     />
                 ))}
             </div>
