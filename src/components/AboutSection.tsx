@@ -1,6 +1,8 @@
 "use client";
 import ContributionGrid from "./ContributionGrid";
 import StatusBar from "./StatusBar";
+import VerticalGrid from "./VerticalGrid";
+import HorizontalGrid from "./HorizontalGrid";
 
 const socials = [
   { label: "Twitter", icon: "𝕏", href: "https://twitter.com" },
@@ -73,82 +75,88 @@ function SocialButton({ label, icon, href }: { label: string; icon: string; href
 
 export default function AboutSection() {
   return (
-    <div className="page-enter max-w-[860px] mx-auto pt-[100px] px-6 pb-10">
+    <>
+      {/* Background Grids (fixed, behind content) */}
+      <VerticalGrid />
+      {/* Main Content (z-10 to stay on top, max-w-4xl to match grid lines) */}
+      <div className="page-enter relative z-10 max-w-4xl mx-auto pt-[100px] px-6 pb-10">
 
-      {/* Hero */}
-      <p className="text-[13px] text-[#666] mb-3 tracking-[0.03em]">
-        Hola I&apos;m 👋
-      </p>
+        {/* Hero */}
+        <p className="text-[13px] text-[#666] mb-3 tracking-[0.03em]">
+          Hola I&apos;m 👋
+        </p>
 
-      <h1 className="font-[family-name:var(--font-pixel)] text-[clamp(34px,6vw,58px)] font-medium tracking-[0.045em] uppercase leading-[1.05] text-[#efefef] mb-5">
-        Kumar Sujal
-      </h1>
+        <h1 className="font-[family-name:var(--font-pixel)] text-[clamp(34px,6vw,58px)] font-medium tracking-[0.045em] uppercase leading-[1.05] text-[#efefef] mb-5">
+          Kumar Sujal
+        </h1>
 
-      <p className="text-[11px] text-[#555] tracking-[0.14em] uppercase mb-9">
-        I build web apps, explore blockchain, and crunch data for research
-      </p>
+        <p className="text-[11px] text-[#555] tracking-[0.14em] uppercase mb-9">
+          I build web apps, explore blockchain, and crunch data for research
+        </p>
 
-      {/* Terminal pill */}
-      <div className="flex items-center gap-4 mb-[72px]">
-        <div className="bg-[#111] border border-[#252525] py-2 px-[18px] text-[13px] text-[#d4d4d4] flex items-center gap-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
-          <span className="text-[#57c457] text-[9px]">●</span>
-          <span>npx kumarsujal</span>
-          <span className="blink text-[#555] font-light">_</span>
-        </div>
-        <span className="text-[11px] text-[#444]">← try this in your terminal</span>
-      </div>
-
-      {/* About Me heading */}
-      <h2 className="font-[family-name:var(--font-pixel)] text-xl font-medium tracking-[0.07em] uppercase text-[#aaa] mb-5">
-        About_Me
-      </h2>
-
-      <p className="text-[15px] leading-[1.95] text-[#a0a0a0] mb-3.5">
-        Hi! I&apos;m Kumar Sujal — a student developer with interests spanning competitive programming,
-        Web3/blockchain, and environmental data analysis. I love building things that look great and
-        work even better, from dark luxury wallet UIs to scientific research platforms.
-      </p>
-      <p className="text-[15px] leading-[1.95] text-[#a0a0a0] mb-12">
-        I&apos;ve spent time working on complex groundwater datasets for Ranchi district, building
-        Solana DApps on devnet, grinding Codeforces C++ problems, and starting to explore
-        quantitative finance via WorldQuant BRAIN&apos;s IQC. I enjoy the messy infrastructure
-        work just as much as shipping the final product.
-      </p>
-
-      {/* Social links */}
-      <p className="text-[14px] text-[#444] mb-3">
-        My <strong className="text-[#666]">social links</strong> if you wish to connect with me
-      </p>
-      <div className="flex flex-wrap gap-2 mb-[60px]">
-        {socials.map(s => <SocialButton key={s.label} {...s} />)}
-      </div>
-
-      {/* Contribution grid */}
-      <ContributionGrid total={3847} />
-
-      {/* Notable achievements heading */}
-      <h2 className="font-[family-name:var(--font-pixel)] text-xl font-medium tracking-[0.07em] uppercase text-[#aaa] mt-[60px] mb-6">
-        Notable_achievements
-      </h2>
-
-      <div className="flex flex-col">
-        {achievements.map((a, i) => (
-          <div
-            key={i}
-            className="border-l-2 border-[#1e1e1e] hover:border-[#3a3a3a] pl-5 py-3.5 transition-colors duration-200"
-          >
-            <p className="text-[13px] leading-[1.9] text-[#909090]">
-              <strong className="text-[#d0d0d0]">{a.title}</strong>{" "}
-              {highlight(a.body, a.bold)}
-              {a.link && (
-                <> <a href={a.link.href} className="text-[#777] underline hover:text-white transition-colors">{a.link.text}</a></>
-              )}
-            </p>
+        {/* Terminal pill */}
+        <div className="flex items-center gap-4 mb-[72px]">
+          <div className="bg-[#111] border border-[#252525] py-2 px-[18px] text-[13px] text-[#d4d4d4] flex items-center gap-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+            <span className="text-[#57c457] text-[9px]">●</span>
+            <span>npx kumarsujal</span>
+            <span className="blink text-[#555] font-light">_</span>
           </div>
-        ))}
-      </div>
+          <span className="text-[11px] text-[#444]">← try this in your terminal</span>
+        </div>
+        <HorizontalGrid />
 
-      <StatusBar />
-    </div>
+        {/* About Me heading */}
+        <h2 className="font-[family-name:var(--font-pixel)] text-xl font-medium tracking-[0.07em] uppercase text-[#aaa] mb-5">
+          About_Me
+        </h2>
+
+        <p className="text-[15px] leading-[1.95] text-[#a0a0a0] mb-3.5">
+          Hi! I&apos;m Kumar Sujal — a student developer with interests spanning competitive programming,
+          Web3/blockchain, and environmental data analysis. I love building things that look great and
+          work even better, from dark luxury wallet UIs to scientific research platforms.
+        </p>
+        <p className="text-[15px] leading-[1.95] text-[#a0a0a0] mb-12">
+          I&apos;ve spent time working on complex groundwater datasets for Ranchi district, building
+          Solana DApps on devnet, grinding Codeforces C++ problems, and starting to explore
+          quantitative finance via WorldQuant BRAIN&apos;s IQC. I enjoy the messy infrastructure
+          work just as much as shipping the final product.
+        </p>
+
+        {/* Social links */}
+        <p className="text-[14px] text-[#444] mb-3">
+          My <strong className="text-[#666]">social links</strong> if you wish to connect with me
+        </p>
+        <div className="flex flex-wrap gap-2 mb-[60px]">
+          {socials.map(s => <SocialButton key={s.label} {...s} />)}
+        </div>
+
+        {/* Contribution grid */}
+        <ContributionGrid total={3847} />
+
+        {/* Notable achievements heading */}
+        <h2 className="font-[family-name:var(--font-pixel)] text-xl font-medium tracking-[0.07em] uppercase text-[#aaa] mt-[60px] mb-6">
+          Notable_achievements
+        </h2>
+
+        <div className="flex flex-col">
+          {achievements.map((a, i) => (
+            <div
+              key={i}
+              className="border-l-2 border-[#1e1e1e] hover:border-[#3a3a3a] pl-5 py-3.5 transition-colors duration-200"
+            >
+              <p className="text-[13px] leading-[1.9] text-[#909090]">
+                <strong className="text-[#d0d0d0]">{a.title}</strong>{" "}
+                {highlight(a.body, a.bold)}
+                {a.link && (
+                  <> <a href={a.link.href} className="text-[#777] underline hover:text-white transition-colors">{a.link.text}</a></>
+                )}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <StatusBar />
+      </div>
+    </>
   );
 }
