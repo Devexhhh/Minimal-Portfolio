@@ -103,7 +103,7 @@ export default function AboutSection() {
           </div>
           <span className="text-[11px] text-[#444]">← try this in your terminal</span>
         </div>
-        <HorizontalGrid />
+
 
         {/* About Me heading */}
         <h2 className="font-[family-name:var(--font-pixel)] text-xl font-medium tracking-[0.07em] uppercase text-[#aaa] mb-5">
@@ -129,11 +129,11 @@ export default function AboutSection() {
         <div className="flex flex-wrap gap-2 mb-[60px]">
           {socials.map(s => <SocialButton key={s.label} {...s} />)}
         </div>
-        <HorizontalGrid />
+
 
         {/* Contribution grid */}
         <ContributionGrid total={3847} />
-        <HorizontalGrid />
+
         {/* Notable achievements heading */}
         <h2 className="font-[family-name:var(--font-pixel)] text-xl font-medium tracking-[0.07em] uppercase text-[#aaa] mt-[60px] mb-6">
           Notable_achievements
