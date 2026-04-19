@@ -1,5 +1,6 @@
 "use client";
 import StatusBar from "./StatusBar";
+import VerticalGrid from "./VerticalGrid";
 
 // Helper function to match tech tags with specific colors
 const getTechStyle = (tech) => {
@@ -85,89 +86,92 @@ const experiences = [
 
 export default function ExperienceSection() {
   return (
-    <div className="page-enter max-w-4xl mx-auto pt-[100px] px-6 pb-10">
+    <>
+      <VerticalGrid />
+      <div className="page-enter max-w-4xl mx-auto pt-[100px] px-6 pb-10">
 
-      <p className="section-kicker">Career</p>
-      <h1 className="section-title pixel-head">EXPERIENCES</h1>
-      <p className="section-sub">My journey as a developer over 2+ years</p>
+        <p className="section-kicker">Career</p>
+        <h1 className="section-title pixel-head">EXPERIENCES</h1>
+        <p className="section-sub">My journey as a developer over 2+ years</p>
 
-      {/* Timeline */}
-      <div className="relative pl-0">
-        {/* Vertical line */}
-        <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-[#1c1c1c]" />
+        {/* Timeline */}
+        <div className="relative pl-0">
+          {/* Vertical line */}
+          <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-[#1c1c1c]" />
 
-        {/* Entries */}
-        {experiences.map((exp, i) => (
-          <div key={i} className="exp-entry relative pl-10 pb-[52px]">
-            <div className="exp-dot" />
+          {/* Entries */}
+          {experiences.map((exp, i) => (
+            <div key={i} className="exp-entry relative pl-10 pb-[52px]">
+              <div className="exp-dot" />
 
-            {/* Header */}
-            <div className="flex justify-between items-start flex-wrap gap-3 mb-[20px]">
-              <div className="flex items-center gap-4">
-                {/* Logo */}
-                <div className="w-12 h-12 bg-[#111] border border-[#222] flex items-center justify-center text-[20px] shrink-0">
-                  {exp.logo}
-                </div>
-                {/* Company & Role */}
-                <div>
-                  <div className="flex items-center gap-2.5 flex-wrap mb-1">
-                    <span className="text-[18px] font-bold text-[#e2e2e2] tracking-[0.02em] font-pixel">
-                      {exp.company}
-                    </span>
-                    <span className="bg-[#141414] border border-[#222] px-2.5 py-[2px] text-[12px] text-[#666]">
-                      {exp.type}
-                    </span>
+              {/* Header */}
+              <div className="flex justify-between items-start flex-wrap gap-3 mb-[20px]">
+                <div className="flex items-center gap-4">
+                  {/* Logo */}
+                  <div className="w-12 h-12 bg-[#111] border border-[#222] flex items-center justify-center text-[20px] shrink-0">
+                    {exp.logo}
                   </div>
-                  <div className="text-[15px] text-[#888] font-pixel">
-                    {exp.role}
+                  {/* Company & Role */}
+                  <div>
+                    <div className="flex items-center gap-2.5 flex-wrap mb-1">
+                      <span className="text-[18px] font-bold text-[#e2e2e2] tracking-[0.02em] font-pixel">
+                        {exp.company}
+                      </span>
+                      <span className="bg-[#141414] border border-[#222] px-2.5 py-[2px] text-[12px] text-[#666]">
+                        {exp.type}
+                      </span>
+                    </div>
+                    <div className="text-[15px] text-[#888] font-pixel">
+                      {exp.role}
+                    </div>
                   </div>
+                </div>
+
+                {/* Location & Period */}
+                <div className="text-right mt-1 sm:mt-0">
+                  <div className="text-[13px] text-[#666] mb-0.5">{exp.period}</div>
+                  <div className="text-[12px] text-[#555]">{exp.location}</div>
                 </div>
               </div>
 
-              {/* Location & Period */}
-              <div className="text-right mt-1 sm:mt-0">
-                <div className="text-[13px] text-[#666] mb-0.5">{exp.period}</div>
-                <div className="text-[12px] text-[#555]">{exp.location}</div>
+              {/* Responsibilities */}
+              <div className="mb-5">
+                <p className="text-[11px] tracking-[0.12em] text-[#555] mb-3 uppercase">
+                  Key Responsibilities
+                </p>
+                <ul className="list-none p-0 m-0">
+                  {exp.responsibilities.map((r, ri) => (
+                    <li key={ri} className="text-[14px] leading-[1.85] text-[#a0a0a0] pl-5 relative mb-2">
+                      <span className="absolute left-0 text-[#555] top-[2px]">•</span>
+                      {r}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Tech */}
+              <div>
+                <p className="text-[11px] tracking-[0.12em] text-[#555] mb-3 uppercase">
+                  Technology Used
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {exp.tech.map((t, idx) => (
+                    <span
+                      key={idx}
+                      className={`flex items-center gap-1.5 px-2 py-1 border text-[11px] tracking-wide transition-colors duration-200 ${getTechStyle(t)}`}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
+          ))}
+        </div>
 
-            {/* Responsibilities */}
-            <div className="mb-5">
-              <p className="text-[11px] tracking-[0.12em] text-[#555] mb-3 uppercase">
-                Key Responsibilities
-              </p>
-              <ul className="list-none p-0 m-0">
-                {exp.responsibilities.map((r, ri) => (
-                  <li key={ri} className="text-[14px] leading-[1.85] text-[#a0a0a0] pl-5 relative mb-2">
-                    <span className="absolute left-0 text-[#555] top-[2px]">•</span>
-                    {r}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Tech */}
-            <div>
-              <p className="text-[11px] tracking-[0.12em] text-[#555] mb-3 uppercase">
-                Technology Used
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {exp.tech.map((t, idx) => (
-                  <span
-                    key={idx}
-                    className={`flex items-center gap-1.5 px-2 py-1 border text-[11px] tracking-wide transition-colors duration-200 ${getTechStyle(t)}`}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        ))}
+        <StatusBar />
       </div>
-
-      <StatusBar />
-    </div>
+    </>
   );
 }
